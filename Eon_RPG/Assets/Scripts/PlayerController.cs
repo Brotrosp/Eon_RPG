@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Playerontroller : MonoBehaviour
+public class PlayeController : MonoBehaviour
 {
 
 
