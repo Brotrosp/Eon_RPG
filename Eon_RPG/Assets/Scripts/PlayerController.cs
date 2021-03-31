@@ -1,41 +1,52 @@
-using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-
-public class PlayerController : MonoBehaviour
+public class Playerontroller : MonoBehaviour
 {
-    CharacterController characterController;
 
-    public float speed = 6.0f;
-    public float jumpSpeed = 8.0f;
-    public float gravity = 20.0f;
 
-    private Vector3 moveDirection = Vector3.zero;
+    CharacterController Controller;
 
+    public float Speed;
+
+    public Transform Cam;
+
+
+    // Start is called before the first frame update
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+
+        Controller = GetComponent<CharacterController>();
+
     }
 
+    // Update is called once per frame
     void Update()
     {
-        if (characterController.isGrounded)
+
+        float Horizontal = Input.GetAxis("Horizontal") * Speed * Time.deltaTime;
+        float Vertical = Input.GetAxis("Vertical") * Speed * Time.deltaTime;
+
+        Vector3 Movement = Cam.transform.right * Horizontal + Cam.transform.forward * Vertical;
+        Movement.y = 0f;
+
+
+
+        Controller.Move(Movement);
+
+        if (Movement.magnitude != 0f)
         {
-           
+            transform.Rotate(Vector3.up * Input.GetAxis("Mouse X") * Cam.GetComponent<CameraController>().sensivity * Time.deltaTime);
 
-            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-            moveDirection *= speed;
 
-            if (Input.GetButton("Jump"))
-            {
-                moveDirection.y = jumpSpeed;
-            }
+            Quaternion CamRotation = Cam.rotation;
+            CamRotation.x = 0f;
+            CamRotation.z = 0f;
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, CamRotation, 0.1f);
+
         }
-
-        //applico gravità
-        moveDirection.y -= gravity * Time.deltaTime;
-
-        //muovo il controller
-        characterController.Move(moveDirection * Time.deltaTime);
     }
+
 }
