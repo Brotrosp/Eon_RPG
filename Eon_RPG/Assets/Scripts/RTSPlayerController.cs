@@ -28,13 +28,13 @@ public class RTSPlayerController : MonoBehaviour
     {
 
         //Handle mouse input
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse1))
         {
             MoveToTarget(Input.mousePosition);
         }
 
         //Camera follow
-        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraOffset, Time.deltaTime * 7.4f);
+        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraOffset, Time.deltaTime * 20f);
         playerCamera.transform.LookAt(transform);
     }
 
