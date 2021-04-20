@@ -34,7 +34,7 @@ public class RTSPlayerController : MonoBehaviour
         }
 
         //Camera follow
-        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraOffset, Time.deltaTime * 20f);
+        playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, transform.position + cameraOffset, Time.deltaTime * 7.6f);
         playerCamera.transform.LookAt(transform);
     }
 
