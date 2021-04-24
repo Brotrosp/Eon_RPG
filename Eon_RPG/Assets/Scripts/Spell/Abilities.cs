@@ -11,12 +11,12 @@ public class Abilities : MonoBehaviour
     bool isCooldown = false;
     public KeyCode ability1;
 
-
     [Header("Ability 2")]
     public float cooldown2 = 5;
     public Image abilityImage2;
     bool isCooldown2 = false;
     public KeyCode ability2;
+
 
     [Header("Ability 3")]
     public float cooldown3 = 10;
@@ -39,10 +39,10 @@ public class Abilities : MonoBehaviour
         Ability2();
         Ability3();
     }
-
+ 
     void Ability1()
     {
-        if (Input.GetKey(ability1) && isCooldown == false)
+        if (Input.GetKeyDown(ability1) && isCooldown == false)
         {
             isCooldown = true;
             abilityImage1.fillAmount = 1;
@@ -52,8 +52,6 @@ public class Abilities : MonoBehaviour
         if (isCooldown)
         {
             abilityImage1.fillAmount -= 1 / cooldown1 * Time.deltaTime;
-            
-
 
             if (abilityImage1.fillAmount <= 0)
             {
@@ -64,9 +62,10 @@ public class Abilities : MonoBehaviour
         }
     }
 
+    
     void Ability2()
     {
-        if (Input.GetKey(ability2) && isCooldown2 == false)
+        if (Input.GetKeyDown(ability2) && isCooldown2 == false)
         {
             isCooldown2 = true;
             abilityImage2.fillAmount = 1;
@@ -88,7 +87,7 @@ public class Abilities : MonoBehaviour
 
     void Ability3()
     {
-        if (Input.GetKey(ability3) && isCooldown3 == false)
+        if (Input.GetKeyDown(ability3) && isCooldown3 == false)
         {
             isCooldown3 = true;
             abilityImage3.fillAmount = 1;
