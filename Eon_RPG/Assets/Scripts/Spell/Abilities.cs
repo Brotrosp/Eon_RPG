@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Abilities : MonoBehaviour
 {
     [Header("Ability 1")]
-    public float cooldown1 = 3;
+    public float cooldown1 = 2;
     public Image abilityImage1;
     bool isCooldown = false;
     public KeyCode ability1;
@@ -23,6 +23,8 @@ public class Abilities : MonoBehaviour
     public Image abilityImage3;
     bool isCooldown3 = false;
     public KeyCode ability3;
+
+    public Animator animator;
 
     void Start()
     {
@@ -44,16 +46,20 @@ public class Abilities : MonoBehaviour
         {
             isCooldown = true;
             abilityImage1.fillAmount = 1;
+            animator.SetBool("AbilityFireBall", true);
         }
 
         if (isCooldown)
         {
             abilityImage1.fillAmount -= 1 / cooldown1 * Time.deltaTime;
+            
+
 
             if (abilityImage1.fillAmount <= 0)
             {
                 abilityImage1.fillAmount = 0;
                 isCooldown = false;
+                animator.SetBool("AbilityFireBall", false);
             }
         }
     }
