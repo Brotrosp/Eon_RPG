@@ -70,6 +70,7 @@ public class Abilities : MonoBehaviour
         {
             isCooldown2 = true;
             abilityImage2.fillAmount = 1;
+            animator.SetBool("Heal", true);
         }
 
         if (isCooldown2)
@@ -80,6 +81,7 @@ public class Abilities : MonoBehaviour
             {
                 abilityImage2.fillAmount = 0;
                 isCooldown2 = false;
+                animator.SetBool("Heal", false);
             }
         }
     }
