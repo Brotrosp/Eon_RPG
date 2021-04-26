@@ -50,10 +50,8 @@ public class Abilities : MonoBehaviour
             isCooldown = true;
             abilityImage1.fillAmount = 1;
             animator.SetBool("AbilityFireBall", true);
-
-            GameObject pallina = Instantiate(proiettile, puntatore.transform.position, puntatore.transform.rotation);
-            pallina.GetComponent<Rigidbody>().velocity = puntatore.transform.forward * 10;
-            Destroy(pallina, 2f);
+            Invoke("ParteAnimazione", 0.7f);
+            
         }
 
         if (isCooldown)
@@ -112,4 +110,10 @@ public class Abilities : MonoBehaviour
         }
     }
 
+    public void ParteAnimazione()
+    {
+        GameObject pallina = Instantiate(proiettile, puntatore.transform.position, puntatore.transform.rotation);
+        pallina.GetComponent<Rigidbody>().velocity = puntatore.transform.forward * 20;
+        Destroy(pallina, 3f);
+    }
 }

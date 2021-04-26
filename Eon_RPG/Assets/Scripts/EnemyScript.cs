@@ -10,9 +10,12 @@ public class EnemyScript : MonoBehaviour
     NavMeshAgent agente;
     int contapassaggi = 0;
     bool miStaiInseguendo = false;
+    bool miStoMuovendo = false;
     int vitaNemico = 5;
 
     Transform player;
+
+    public Animator animator;
 
 
     // Start is called before the first frame update
@@ -20,7 +23,8 @@ public class EnemyScript : MonoBehaviour
     {
         agente = GetComponent<NavMeshAgent>();
         agente.destination = passaggi[contapassaggi].position;
-        player = GameObject.Find("Player").transform;
+        animator.SetBool("walk", true);
+        player = GameObject.Find("Wizard Male 03").transform;
     }
 
     // Update is called once per frame
@@ -37,9 +41,46 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("Prossimo passaggio: " + contapassaggi);
             agente.destination = passaggi[contapassaggi].position;
         }
-        /*if (miStaiInseguendo == true)
+        if (miStaiInseguendo == true)
         {
             agente.destination = player.position;
-        }*/
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Proiettile")
+        {
+            Destroy(collision.gameObject);
+            vitaNemico--;
+            if (vitaNemico <= 0)
+            {
+                Destroy(this.gameObject, 0.1f);
+                //gameManager.HaiVinto();
+            }
+
+        }
+
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.name == "Wizard Male 03")
+        {
+            Debug.Log("ADESSO TI INSEGUO!!!!");
+            miStaiInseguendo = true;
+            agente.destination = other.transform.position;
+
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.name == "Wizard Male 03")
+        {
+            Debug.Log("ADESSO NON TI INSEGUO PIU'!!!!");
+            miStaiInseguendo = false;
+            agente.destination = passaggi[contapassaggi].position;
+        }
     }
 }
