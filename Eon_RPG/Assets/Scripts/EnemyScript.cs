@@ -17,6 +17,8 @@ public class EnemyScript : MonoBehaviour
 
     public Animator animator;
 
+    int vitaEnemy = 1;
+
 
     // Start is called before the first frame update
     void Start()
@@ -52,8 +54,8 @@ public class EnemyScript : MonoBehaviour
         if (collision.gameObject.tag == "Proiettile")
         {
             Destroy(collision.gameObject);
-            vitaNemico--;
-            if (vitaNemico <= 0)
+            vitaEnemy--;
+            if (vitaEnemy <= 0)
             {
                 Destroy(this.gameObject, 0.1f);
                 //gameManager.HaiVinto();
@@ -70,6 +72,7 @@ public class EnemyScript : MonoBehaviour
             Debug.Log("ADESSO TI INSEGUO!!!!");
             miStaiInseguendo = true;
             agente.destination = other.transform.position;
+            animator.SetBool("isAttacking", true);
 
         }
     }
