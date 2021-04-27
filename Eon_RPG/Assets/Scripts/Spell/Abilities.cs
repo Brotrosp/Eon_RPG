@@ -28,6 +28,8 @@ public class Abilities : MonoBehaviour
 
     public GameObject proiettile;
     public GameObject puntatore;
+    public GameObject scudo;
+    public GameObject vita;
 
     void Start()
     {
@@ -50,7 +52,7 @@ public class Abilities : MonoBehaviour
             isCooldown = true;
             abilityImage1.fillAmount = 1;
             animator.SetBool("AbilityFireBall", true);
-            Invoke("ParteAnimazione", 0.7f);
+            Invoke("ParteSfera", 0.7f);
             
         }
 
@@ -75,6 +77,9 @@ public class Abilities : MonoBehaviour
             isCooldown2 = true;
             abilityImage2.fillAmount = 1;
             animator.SetBool("Heal", true);
+            Invoke("ParteVita", 0.1f);
+            
+
         }
 
         if (isCooldown2)
@@ -86,6 +91,7 @@ public class Abilities : MonoBehaviour
                 abilityImage2.fillAmount = 0;
                 isCooldown2 = false;
                 animator.SetBool("Heal", false);
+                vita.SetActive(false);
             }
         }
     }
@@ -96,6 +102,8 @@ public class Abilities : MonoBehaviour
         {
             isCooldown3 = true;
             abilityImage3.fillAmount = 1;
+            Invoke("ParteScudo", 0.1f);
+            animator.SetBool("Shield", true);
         }
 
         if (isCooldown3)
@@ -106,14 +114,26 @@ public class Abilities : MonoBehaviour
             {
                 abilityImage3.fillAmount = 0;
                 isCooldown3 = false;
+                animator.SetBool("Shield", false);
+                scudo.SetActive(false);
             }
         }
     }
 
-    public void ParteAnimazione()
+    public void ParteSfera()
     {
         GameObject pallina = Instantiate(proiettile, puntatore.transform.position, puntatore.transform.rotation);
         pallina.GetComponent<Rigidbody>().velocity = puntatore.transform.forward * 20;
         Destroy(pallina, 3f);
+    }
+
+    public void ParteScudo()
+    {
+        scudo.SetActive(true);
+    }
+
+    public void ParteVita()
+    {
+        vita.SetActive(true);
     }
 }
