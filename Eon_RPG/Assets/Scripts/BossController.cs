@@ -11,6 +11,8 @@ public class BossController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
 
+    int vitaBoss = 5;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -47,5 +49,18 @@ public class BossController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRadious);
     }
 
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject obj = collision.gameObject;
+        if (obj.name == "Sphere(Clone)")
+        {
+            Debug.Log("colpito");
+            vitaBoss--;
+            if (vitaBoss == 0)
+            {
+                Destroy(this.gameObject, 0.1f);
+            }
+            Destroy(obj);
+        }
+    }
 }

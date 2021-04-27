@@ -13,6 +13,13 @@ public class EnemyBehaviour : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
+    public float Range;
+    public bool playerInRange;
+
+    public Animator anim;
+
+    int vitaNemico = 1;
+
     private void Awake()
     {
         player = GameObject.Find("Wizard Male 03").transform;
@@ -21,7 +28,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Update()
     {
-        Patroling();
+        playerInRange = Physics.CheckSphere(transform.position, Range, IsPlayer);
+
+        if (!playerInRange)
+        {
+            Patroling();
+        } 
+        else if (playerInRange)
+        {
+            FollowPlayer();
+        }
+       
     }
 
     void Patroling()
@@ -51,6 +68,28 @@ public class EnemyBehaviour : MonoBehaviour
         if(Physics.Raycast(walkpoint, -transform.up, 2f, IsGround))
         {
             walkPointSet = true;
+        }
+    }
+
+    void FollowPlayer()
+    {
+        agent.SetDestination(player.position);
+        anim.SetBool("isAttacking", true);
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        GameObject obj = collision.gameObject;
+        if(obj.name == "Sphere(Clone)")
+        {
+            Debug.Log("colpito");
+            vitaNemico--;
+            if(vitaNemico == 0)
+            {
+                Destroy(this.gameObject, 0.1f);
+            }
+            Destroy(obj);
         }
     }
 }
