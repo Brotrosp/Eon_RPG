@@ -29,9 +29,9 @@ public class SwitchSceneScript : MonoBehaviour
         Invoke("LoadLevel", 3f);
     }
 
-    public static void OpenScene(string nameScene, int numberScene)
+    public static void OpenScene(string nameScene)
     {
-        SceneManager.LoadScene(nameScene, (LoadSceneMode)numberScene);
+        SceneManager.LoadScene(nameScene);
     }
     
 }

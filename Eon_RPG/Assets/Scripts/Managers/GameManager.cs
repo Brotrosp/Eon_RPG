@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
     public void YouWin()
     {
         Debug.Log("Winner!!!");
-        //SwitchSceneScript.OpenScene("WIN");
+        SwitchSceneScript.OpenScene("Start");
     }
 }
 
