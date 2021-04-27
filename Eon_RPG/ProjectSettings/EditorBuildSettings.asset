@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Menu.unity
-    guid: 2bd8d732817899e4ba5afa59202229ca
+    path: Assets/Scenes/Start.unity
+    guid: 539bde009470c3e4bb3622dc2599b5df
   - enabled: 1
     path: Assets/Scenes/Main_fabio.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

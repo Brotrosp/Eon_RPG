@@ -33,10 +33,12 @@ public class EnemyBehaviour : MonoBehaviour
         if (!playerInRange)
         {
             Patroling();
+            anim.SetBool("isAttacking", false);
         } 
         else if (playerInRange)
         {
             FollowPlayer();
+            anim.SetBool("isAttacking", true);
         }
        
     }
@@ -74,7 +76,6 @@ public class EnemyBehaviour : MonoBehaviour
     void FollowPlayer()
     {
         agent.SetDestination(player.position);
-        anim.SetBool("isAttacking", true);
 
     }
 

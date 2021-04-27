@@ -10,7 +10,6 @@ public class NextSceneLoader : MonoBehaviour
     void Start()
     {
         nextScene = SceneManager.GetActiveScene().buildIndex + 1;
-
     }
 
     public void OnTriggerEnter(Collider other)
@@ -32,14 +31,6 @@ public class NextSceneLoader : MonoBehaviour
                     PlayerPrefs.SetInt("levelAt", nextScene);
                 }
             }
-
-           
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
