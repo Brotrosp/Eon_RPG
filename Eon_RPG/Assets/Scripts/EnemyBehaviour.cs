@@ -5,71 +5,52 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    public List<Transform> step;
-    NavMeshAgent agent;
-    int counter = 0;
-    bool isFollow = false;
-    Transform player;
-    public int shield;
+    public NavMeshAgent agent;
+    public Transform player;
+    public LayerMask IsGround, IsPlayer;
 
-    // Start is called before the first frame update
-    void Start()
+    public Vector3 walkpoint;
+    bool walkPointSet;
+    public float walkPointRange;
+
+    private void Awake()
     {
+        player = GameObject.Find("Wizard Male 03").transform;
         agent = GetComponent<NavMeshAgent>();
-        agent.destination = step[counter].position;
-        player = GameObject.Find("Enemy").transform;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if(agent.remainingDistance < .1 && isFollow == false)
-        {
-            counter++;
-            if(counter >= step.Count)
-            {
-                counter = 0;
-            }
-            agent.destination = step[counter].position;
-        }
-
-        if(isFollow == true)
-        {
-            agent.destination = player.position;
-        }
+        Patroling();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    void Patroling()
     {
-        if(collision.gameObject.tag == "Magie")
-        {
-            Destroy(collision.gameObject);
-            shield--;
+        if (!walkPointSet) SearchWalkPoint();
 
-            if (shield <= 0)
-            {
-                Destroy(this.gameObject, 0.1f);
-            }
+        if (walkPointSet)
+        {
+            agent.SetDestination(walkpoint);
         }
 
-        
-    }
+        Vector3 distanceToWalkPoint = transform.position - walkpoint;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.name == "Player")
+        if(distanceToWalkPoint.magnitude < 1f)
         {
-            isFollow = true;
-            agent.destination = other.transform.position;
+            walkPointSet = false;
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    void SearchWalkPoint()
     {
-        if (other.gameObject.name == "Player")
+        float randomZ = Random.Range(-walkPointRange, walkPointRange);
+        float randomX = Random.Range(-walkPointRange, walkPointRange);
+
+        walkpoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
+
+        if(Physics.Raycast(walkpoint, -transform.up, 2f, IsGround))
         {
-            isFollow = false;
-            agent.destination = step[counter].position;
+            walkPointSet = true;
         }
     }
 }
