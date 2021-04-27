@@ -10,8 +10,6 @@ public class spawnerMain : MonoBehaviour
     public float spawnDelay;
     private int maxSpawner = 15;
     private int enemyCount = 0;
-
-    public List<GameObject> lista;
     
     //public Rect spawnArea;
 
