@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/EASY_BOSS.unity
     guid: 09f06fdde671c4a47929d610e29ed94a
   - enabled: 1
+    path: Assets/Scenes/HARD_BOSS.unity
+    guid: 797aba8afa6286e44ad023d0005c2f6c
+  - enabled: 1
     path: Assets/Scenes/Win.unity
     guid: 793b22afa77f47646b8ed4012d74ff2a
   - enabled: 1

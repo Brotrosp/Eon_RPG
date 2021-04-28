@@ -6,10 +6,12 @@ using UnityEngine.SceneManagement;
 public class NextSceneLoader : MonoBehaviour
 {
     public int nextScene;
+    public int numeroscena;
     // Start is called before the first frame update
     void Start()
     {
-        nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        SceneManager.LoadScene(numeroscena);
+        nextScene = numeroscena;
     }
 
     public void OnTriggerEnter(Collider other)
@@ -23,8 +25,6 @@ public class NextSceneLoader : MonoBehaviour
             }
             else
             {
-                SceneManager.LoadScene(nextScene);
-
                 //set indice
                 if (nextScene > PlayerPrefs.GetInt("levelAt"))
                 {
