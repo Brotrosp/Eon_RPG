@@ -11,6 +11,7 @@ public class BossController : MonoBehaviour
     public float attackRadious = 2.5f;
     Transform target;
     NavMeshAgent agent;
+    GameManager gameManager;
 
     int vitaBoss = 5;
 
@@ -19,6 +20,7 @@ public class BossController : MonoBehaviour
     {
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
+        gameManager = GameObject.Find("MANAGERS").GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -64,6 +66,12 @@ public class BossController : MonoBehaviour
 
             }
             Destroy(obj);
+        }
+
+        if (collision.gameObject.name == "Wizard Male 03")
+        {
+            Debug.Log("Player colpito");
+            gameManager.ModificaEnergia(-5);
         }
     }
 }
