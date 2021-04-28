@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class Abilities : MonoBehaviour
 {
+
+    public float maxEnergia = 10f;
+    public float energia;
+
+    public ScriptMana scriptMana;
+    GameManager gameManager;
+
     [Header("Ability 1")]
     public float cooldown1 = 2;
     public Image abilityImage1;
@@ -36,6 +43,8 @@ public class Abilities : MonoBehaviour
         abilityImage1.fillAmount = 0;
         abilityImage2.fillAmount = 0;
         abilityImage3.fillAmount = 0;
+        scriptMana = GameObject.Find("SliderMana").GetComponent<ScriptMana>();
+        gameManager = GameObject.Find("MANAGERS").GetComponent<GameManager>();
     }
 
     void Update()
@@ -47,12 +56,13 @@ public class Abilities : MonoBehaviour
  
     void Ability1()
     {
-        if (Input.GetKeyDown(ability1) && isCooldown == false)
+        if (Input.GetKeyDown(ability1) && isCooldown == false && maxEnergia != 0)
         {
             isCooldown = true;
             abilityImage1.fillAmount = 1;
             animator.SetBool("AbilityFireBall", true);
             Invoke("ParteSfera", 0.7f);
+            ModificaMana(-2);
             
         }
 
@@ -72,14 +82,14 @@ public class Abilities : MonoBehaviour
     
     void Ability2()
     {
-        if (Input.GetKeyDown(ability2) && isCooldown2 == false)
+        if (Input.GetKeyDown(ability2) && isCooldown2 == false && maxEnergia != 0)
         {
             isCooldown2 = true;
             abilityImage2.fillAmount = 1;
             animator.SetBool("Heal", true);
             Invoke("ParteVita", 0.1f);
-            
-
+            ModificaMana(-2);
+            gameManager.ModificaEnergia(5);
         }
 
         if (isCooldown2)
@@ -98,12 +108,14 @@ public class Abilities : MonoBehaviour
 
     void Ability3()
     {
-        if (Input.GetKeyDown(ability3) && isCooldown3 == false)
+        if (Input.GetKeyDown(ability3) && isCooldown3 == false && maxEnergia != 0)
         {
             isCooldown3 = true;
             abilityImage3.fillAmount = 1;
             Invoke("ParteScudo", 0.1f);
             animator.SetBool("Shield", true);
+            ModificaMana(-2);
+
         }
 
         if (isCooldown3)
@@ -135,5 +147,11 @@ public class Abilities : MonoBehaviour
     public void ParteVita()
     {
         vita.SetActive(true);
+    }
+
+    public void ModificaMana(int quantita)
+    {
+        maxEnergia += quantita;
+        scriptMana.SetMana(maxEnergia);
     }
 }

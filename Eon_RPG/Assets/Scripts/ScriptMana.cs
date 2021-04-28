@@ -7,13 +7,13 @@ public class ScriptMana : MonoBehaviour
 {
     public Slider slider;
 
-    void SetMaxMana(int mana)
+    public void SetMaxMana(float mana)
     {
         slider.maxValue = mana;
         slider.value = mana;
     }
 
-    void SetMana(int mana)
+    public void SetMana(float mana)
     {
         slider.value = mana;
     }

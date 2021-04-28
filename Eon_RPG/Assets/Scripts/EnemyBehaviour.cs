@@ -20,8 +20,11 @@ public class EnemyBehaviour : MonoBehaviour
 
     int vitaNemico = 1;
 
+    GameManager gameManager;
+
     private void Awake()
     {
+        gameManager = GameObject.Find("MANAGERS").GetComponent<GameManager>();
         player = GameObject.Find("Wizard Male 03").transform;
         agent = GetComponent<NavMeshAgent>();
     }
@@ -76,7 +79,6 @@ public class EnemyBehaviour : MonoBehaviour
     void FollowPlayer()
     {
         agent.SetDestination(player.position);
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -91,6 +93,12 @@ public class EnemyBehaviour : MonoBehaviour
                 Destroy(this.gameObject, 0.1f);
             }
             Destroy(obj);
+        }
+
+        if (collision.gameObject.name == "Wizard Male 03")
+        {
+            Debug.Log("Player colpito");
+            gameManager.ModificaEnergia(-1);
         }
     }
 }
