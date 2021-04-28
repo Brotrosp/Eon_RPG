@@ -20,7 +20,7 @@ public class MainSceneLoader : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            SceneScript.Restart();
+            SceneScript.YouWin();
         }
     }
 }

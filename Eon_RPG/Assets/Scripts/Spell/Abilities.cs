@@ -37,6 +37,7 @@ public class Abilities : MonoBehaviour
     public GameObject puntatore;
     public GameObject scudo;
     public GameObject vita;
+    public GameObject mana;
 
     void Start()
     {
@@ -108,14 +109,13 @@ public class Abilities : MonoBehaviour
 
     void Ability3()
     {
-        if (Input.GetKeyDown(ability3) && isCooldown3 == false && maxEnergia != 0)
+        if (Input.GetKeyDown(ability3) && isCooldown3 == false)
         {
             isCooldown3 = true;
             abilityImage3.fillAmount = 1;
-            Invoke("ParteScudo", 0.1f);
             animator.SetBool("Shield", true);
-            ModificaMana(-2);
-
+            Invoke("ParteMana", 0.1f);
+            RefillMana(10);
         }
 
         if (isCooldown3)
@@ -127,10 +127,14 @@ public class Abilities : MonoBehaviour
                 abilityImage3.fillAmount = 0;
                 isCooldown3 = false;
                 animator.SetBool("Shield", false);
-                scudo.SetActive(false);
+                mana.SetActive(false);
             }
         }
     }
+
+
+
+
 
     public void ParteSfera()
     {
@@ -139,19 +143,25 @@ public class Abilities : MonoBehaviour
         Destroy(pallina, 3f);
     }
 
-    public void ParteScudo()
-    {
-        scudo.SetActive(true);
-    }
-
     public void ParteVita()
     {
         vita.SetActive(true);
     }
 
+    public void ParteMana()
+    {
+        mana.SetActive(true);
+    }
+
     public void ModificaMana(int quantita)
     {
         maxEnergia += quantita;
+        scriptMana.SetMana(maxEnergia);
+    }
+
+    public void RefillMana(int quantita)
+    {
+        maxEnergia = quantita;
         scriptMana.SetMana(maxEnergia);
     }
 }
