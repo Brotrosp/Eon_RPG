@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class BossController : MonoBehaviour
 {
+    public GameObject moneta;
     public Animator anim;
     public float lookRadius = 10f;
     public float attackRadious = 2.5f;
@@ -59,6 +60,8 @@ public class BossController : MonoBehaviour
             if (vitaBoss == 0)
             {
                 Destroy(this.gameObject, 0.1f);
+                moneta.SetActive(true);
+
             }
             Destroy(obj);
         }
