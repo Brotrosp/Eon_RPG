@@ -8,7 +8,7 @@ public class SpawnerLevel2 : MonoBehaviour
     public bool stopSpawing = false;
     public float spawnTime;
     public float spawnDelay;
-    private int maxSpawner = 5;
+    private int maxSpawner = 8;
     private int enemyCount = 0;
 
     //public Rect spawnArea;

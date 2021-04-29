@@ -12,6 +12,7 @@ public class BossController : MonoBehaviour
     Transform target;
     NavMeshAgent agent;
     GameManager gameManager;
+    //public GameObject trigger;
 
     int vitaBoss = 5;
 
@@ -63,6 +64,7 @@ public class BossController : MonoBehaviour
             {
                 Destroy(this.gameObject, 0.1f);
                 moneta.SetActive(true);
+                //trigger.SetActive(true);
 
             }
             Destroy(obj);

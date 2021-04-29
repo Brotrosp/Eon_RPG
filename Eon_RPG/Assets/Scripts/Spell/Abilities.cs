@@ -39,6 +39,7 @@ public class Abilities : MonoBehaviour
     public GameObject vita;
     public GameObject mana;
 
+
     void Start()
     {
         abilityImage1.fillAmount = 0;
@@ -90,7 +91,7 @@ public class Abilities : MonoBehaviour
             animator.SetBool("Heal", true);
             Invoke("ParteVita", 0.1f);
             ModificaMana(-2);
-            gameManager.ModificaEnergia(5);
+            gameManager.ModificaEnergia(3);
         }
 
         if (isCooldown2)
@@ -115,7 +116,15 @@ public class Abilities : MonoBehaviour
             abilityImage3.fillAmount = 1;
             animator.SetBool("Shield", true);
             Invoke("ParteMana", 0.1f);
-            RefillMana(10);
+            RefillMana(2);
+            
+            /*if (maxEnergia >= 0 && maxEnergia <= 10)
+            {
+                RefillMana(+Time.deltaTime);
+            }*/
+
+            //Da chiedere al prof
+            
         }
 
         if (isCooldown3)
@@ -153,15 +162,15 @@ public class Abilities : MonoBehaviour
         mana.SetActive(true);
     }
 
-    public void ModificaMana(int quantita)
+    public void ModificaMana(float quantita)
     {
         maxEnergia += quantita;
         scriptMana.SetMana(maxEnergia);
     }
 
-    public void RefillMana(int quantita)
+    public void RefillMana(float quantita)
     {
-        maxEnergia = quantita;
+        maxEnergia += quantita;
         scriptMana.SetMana(maxEnergia);
     }
 }
