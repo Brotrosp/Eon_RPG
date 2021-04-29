@@ -172,6 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8419638036762560535}
   - component: {fileID: 7803855000301051581}
+  - component: {fileID: 675089285007824108}
   m_Layer: 0
   m_Name: Panchina
   m_TagString: Untagged
@@ -208,3 +209,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.64273524, y: 0.7623766, z: 1}
   m_Center: {x: -0.17863257, y: 0.2414136, z: -2.8698323e-16}
+--- !u!208 &675089285007824108
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9192762199874589357}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.35, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.15, y: 0.31, z: 0}
+  m_TimeToStationary: 0.5
