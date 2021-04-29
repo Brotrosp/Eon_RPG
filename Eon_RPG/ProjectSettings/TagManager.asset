@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Proiettile
   - Destination
+  - NextScene
   layers:
   - Default
   - TransparentFX

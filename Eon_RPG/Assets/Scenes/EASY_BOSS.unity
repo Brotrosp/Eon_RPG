@@ -989,6 +989,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wizard Male 03
       objectReference: {fileID: 0}
+    - target: {fileID: 142252, guid: 12121ab2a0550ba42a9e1d956799fb52, type: 3}
+      propertyPath: m_TagString
+      value: NextScene
+      objectReference: {fileID: 0}
     - target: {fileID: 401526, guid: 12121ab2a0550ba42a9e1d956799fb52, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2609,9 +2613,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1004155264}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95a80582a2e904343b327c295154fecb, type: 3}
+  m_Script: {fileID: 11500000, guid: 6728af0eb51356a4b9348034a9205c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1004155272
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1004155264}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.44745266
+  m_Height: 0.8949053
+  m_Direction: 1
+  m_Center: {x: -0.034233928, y: 0.061172485, z: -0.11909938}
 --- !u!1 &1010292694 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2521615444844473685, guid: a51e77e682872624ab67dec36b93776f, type: 3}
@@ -2698,6 +2716,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1591165099382186, guid: 160a6121b4d25254da31bdab63ad82b7, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4914818815454766, guid: 160a6121b4d25254da31bdab63ad82b7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -2720,7 +2742,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4914818815454766, guid: 160a6121b4d25254da31bdab63ad82b7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 147.891
+      value: 146.051
       objectReference: {fileID: 0}
     - target: {fileID: 4914818815454766, guid: 160a6121b4d25254da31bdab63ad82b7, type: 3}
       propertyPath: m_LocalPosition.z
